@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.content | linebreaksbr }}</p>
+    <p>Publié le {{ article.created_at }}</p>
+
+{%if article.updated_at != article.created_at %}
+    <p>Dernière modification le {{ article.updated_at }}</p>
+{% endif %}
+    <p>Par {{ article.author.username }}</p>
+    <p>
+        <a href="{% url 'blogapp:home' %}">Back to Home</a>
+        </p>
+   
+    {% if user.is_authenticated and user == article.author %}
+     <hr>
+        <a href="{% url 'blogapp:update_article' article.pk %}">Edit</a>
+        <a href="{% url 'blogapp:delete_article' article.pk %}">Delete</a>
+         <hr>
+    {% endif %}
+{% endblock %}  
+ 

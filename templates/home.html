@@ -5,11 +5,39 @@
 <h2>Voici les derniers articles de mon blog</h2>
 <p>
     {%if user.is_authenticated%}
-    Bonjour {{ user.username }} !
+    Bonjour <a href="#">{{ user.username }} !</a>
+    <p>
+        now you can create an article : <a href="{% url 'blogapp:create_article' %}">Add article</a>
+    </p>
     {% else %}
     Veuillez vous connecter pour accéder à votre espace personnel.
     {% endif %}
 </p>
+
+<div>
+
+    {%if user.is_authenticated%}
+       {%if articles %}
+             {% for article in articles %}
+                <div style="border: 1px solid #ccc; padding: 10px   ; margin-bottom: 10px;">
+                <h3>
+                    <a href="{% url 'blogapp:article_detail' article.pk %}">{{ article.title }}</a>
+                </h3>
+                <p>{{ article.content }}</p>
+                <small>Created at: {{ article.created_at }}</small>
+                <p>
+                     <small>Created by : {{ article.author.username }}</small>
+                </p>
+                </div>
+             {% endfor %}
+
+        {%else%}
+        <p>
+            there is not yet articles
+        </p>
+       {%endif%}
+    {% endif %}
+</div>
 
 
 {% endblock content %}
