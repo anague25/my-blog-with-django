@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Search | GreenInk Blog{% endblock title %}
+{% block content %}
+<section class="page-banner">
+    <div class="container">
+        <div class="page-banner-inner">
+            <h1 class="display-6 fw-bold mb-2">Search the blog</h1>
+            <p class="mb-0 text-light-emphasis">Find articles by title, author, or topic.</p>
+        </div>
+    </div>
+</section>
+
+<section class="pb-5">
+    <div class="container">
+        <div class="surface-card p-4 p-lg-5">
+            <form class="mb-3">
+                <label for="searchInput" class="form-label fw-semibold">Search query</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+                    <input id="searchInput" type="search" class="form-control" placeholder="Try: django, productivity, design systems">
+                    <button type="button" class="btn btn-success">Search</button>
+                </div>
+            </form>
+            <p class="text-secondary mb-0">Search backend logic can be connected later without changing this UI structure.</p>
+        </div>
+    </div>
+</section>
+{% endblock content %}

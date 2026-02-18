@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Page Not Found | GreenInk Blog{% endblock title %}
+{% block content %}
+<section class="page-banner">
+    <div class="container">
+        <div class="page-banner-inner">
+            <p class="mb-2 text-light-emphasis">Error 404</p>
+            <h1 class="display-5 fw-bold mb-2">We could not find that page</h1>
+            <p class="mb-0 text-light-emphasis">The link may be broken or the page may have been moved.</p>
+        </div>
+    </div>
+</section>
+
+<section class="pb-5">
+    <div class="container">
+        <div class="surface-card p-4 p-lg-5 text-center">
+            <h2 class="h4 mb-2">Try one of these actions</h2>
+            <p class="text-secondary mb-4">Return to the homepage or continue exploring published content.</p>
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+                <a href="{% url 'blogapp:home' %}" class="btn btn-success">Go to Home</a>
+                <a href="{% url 'blogapp:categories' %}" class="btn btn-outline-dark">Browse Categories</a>
+                <a href="{% url 'blogapp:contact' %}" class="btn btn-outline-secondary">Contact Support</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Categories | GreenInk Blog{% endblock title %}
+{% block content %}
+<section class="page-banner">
+    <div class="container">
+        <div class="page-banner-inner">
+            <h1 class="display-6 fw-bold mb-2">Browse categories</h1>
+            <p class="mb-0 text-light-emphasis">Discover content by theme and navigate your interests faster.</p>
+        </div>
+    </div>
+</section>
+
+<section class="pb-4">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6 col-xl-4">
+                <div class="content-card p-4 h-100">
+                    <h2 class="h5 mb-2">Web Development</h2>
+                    <p class="text-secondary mb-3">Frontend, backend, frameworks, and architecture patterns.</p>
+                    <a href="{% url 'blogapp:archive' %}" class="btn btn-sm btn-outline-dark">Explore posts</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="content-card p-4 h-100">
+                    <h2 class="h5 mb-2">Productivity</h2>
+                    <p class="text-secondary mb-3">Workflows, writing systems, and execution habits.</p>
+                    <a href="{% url 'blogapp:archive' %}" class="btn btn-sm btn-outline-dark">Explore posts</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="content-card p-4 h-100">
+                    <h2 class="h5 mb-2">Design</h2>
+                    <p class="text-secondary mb-3">UI systems, UX principles, and interaction quality.</p>
+                    <a href="{% url 'blogapp:archive' %}" class="btn btn-sm btn-outline-dark">Explore posts</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="content-card p-4 h-100">
+                    <h2 class="h5 mb-2">Startups</h2>
+                    <p class="text-secondary mb-3">Execution, growth loops, and product learning.</p>
+                    <a href="{% url 'blogapp:archive' %}" class="btn btn-sm btn-outline-dark">Explore posts</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="content-card p-4 h-100">
+                    <h2 class="h5 mb-2">Career</h2>
+                    <p class="text-secondary mb-3">Hiring, communication, and long-term development.</p>
+                    <a href="{% url 'blogapp:archive' %}" class="btn btn-sm btn-outline-dark">Explore posts</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="content-card p-4 h-100">
+                    <h2 class="h5 mb-2">Data & AI</h2>
+                    <p class="text-secondary mb-3">Applied data workflows and AI implementation lessons.</p>
+                    <a href="{% url 'blogapp:archive' %}" class="btn btn-sm btn-outline-dark">Explore posts</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pb-5">
+    <div class="container">
+        <div class="surface-card p-4 p-lg-5 text-center">
+            <h2 class="h4 mb-2">Want tailored updates by topic?</h2>
+            <p class="text-secondary mb-4">Subscribe to our newsletter and receive curated articles based on your interests.</p>
+            <a href="{% url 'blogapp:newsletter' %}" class="btn btn-success">Subscribe</a>
+        </div>
+    </div>
+</section>
+{% endblock content %}

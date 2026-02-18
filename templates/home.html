@@ -1,43 +1,117 @@
 {% extends "base.html" %}
-{% block title %}Home{% endblock title %}
+{% block title %}Home | GreenInk Blog{% endblock title %}
 {% block content %}
-<h1>Welcome to the Home Page</h1>
-<h2>Voici les derniers articles de mon blog</h2>
-<p>
-    {%if user.is_authenticated%}
-    Bonjour <a href="#">{{ user.username }} !</a>
-    <p>
-        now you can create an article : <a href="{% url 'blogapp:create_article' %}">Add article</a>
-    </p>
-    {% else %}
-    Veuillez vous connecter pour accéder à votre espace personnel.
-    {% endif %}
-</p>
-
-<div>
-
-    {%if user.is_authenticated%}
-       {%if articles %}
-             {% for article in articles %}
-                <div style="border: 1px solid #ccc; padding: 10px   ; margin-bottom: 10px;">
-                <h3>
-                    <a href="{% url 'blogapp:article_detail' article.pk %}">{{ article.title }}</a>
-                </h3>
-                <p>{{ article.content }}</p>
-                <small>Created at: {{ article.created_at }}</small>
-                <p>
-                     <small>Created by : {{ article.author.username }}</small>
-                </p>
+<section class="hero-section">
+    <div class="container">
+        <div class="hero-panel p-4 p-lg-5">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <span class="feature-chip mb-3"><i class="bi bi-stars"></i> Editorial platform</span>
+                    <h1 class="display-5 fw-bold mb-3">A complete blog experience built for writers and readers.</h1>
+                    <p class="lead text-secondary mb-4">Publish articles, organize by topic, explore authors, and navigate a clean editorial archive.</p>
+                    <div class="d-flex flex-wrap gap-2">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'blogapp:create_article' %}" class="btn btn-success btn-lg">Write a New Article</a>
+                        {% else %}
+                            <a href="{% url 'blogapp:register' %}" class="btn btn-success btn-lg">Create Your Account</a>
+                            <a href="{% url 'blogapp:connexion' %}" class="btn btn-outline-dark btn-lg">Sign in</a>
+                        {% endif %}
+                    </div>
                 </div>
-             {% endfor %}
+                <div class="col-lg-4">
+                    <div class="stat-card p-4 h-100">
+                        <p class="text-uppercase small text-secondary mb-1">Published articles</p>
+                        <div class="stat-value mb-3">{{ articles|length }}</div>
+                        <p class="mb-3 text-secondary">Key pages available: Archive, Authors, Search, Newsletter, FAQ.</p>
+                        <a href="{% url 'blogapp:archive' %}" class="btn btn-outline-dark btn-sm">Open archive</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-        {%else%}
-        <p>
-            there is not yet articles
-        </p>
-       {%endif%}
-    {% endif %}
-</div>
+<section class="pb-4">
+    <div class="container">
+        <div class="content-card p-3 p-lg-4">
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <span class="text-uppercase small fw-semibold text-secondary">Popular topics</span>
+                <a href="{% url 'blogapp:categories' %}" class="badge text-bg-light border">Web Development</a>
+                <a href="{% url 'blogapp:categories' %}" class="badge text-bg-light border">Productivity</a>
+                <a href="{% url 'blogapp:categories' %}" class="badge text-bg-light border">Design</a>
+                <a href="{% url 'blogapp:categories' %}" class="badge text-bg-light border">Career</a>
+                <a href="{% url 'blogapp:categories' %}" class="badge text-bg-light border">Data & AI</a>
+            </div>
+        </div>
+    </div>
+</section>
 
+{% if featured_article %}
+<section class="pb-4">
+    <div class="container">
+        <article class="content-card p-4 p-lg-5">
+            <p class="text-uppercase small text-success mb-2">Featured story</p>
+            <h2 class="h3 mb-2">{{ featured_article.title }}</h2>
+            <p class="article-meta mb-3">
+                <i class="bi bi-person-circle me-1"></i>{{ featured_article.author.username }}
+                <span class="mx-1">|</span>
+                <i class="bi bi-calendar3 me-1"></i>{{ featured_article.created_at|date:"M d, Y" }}
+            </p>
+            <p class="text-secondary mb-4">{{ featured_article.content|truncatechars:240 }}</p>
+            <a href="{% url 'blogapp:article_detail' featured_article.pk %}" class="btn btn-success">Read featured article</a>
+        </article>
+    </div>
+</section>
+{% endif %}
 
+<section class="pb-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="section-title mb-0">Latest Articles</h2>
+            <a class="btn btn-outline-dark btn-sm" href="{% url 'blogapp:archive' %}">View Full Archive</a>
+        </div>
+
+        {% if articles %}
+            <div class="row g-4">
+                {% for article in articles %}
+                    <div class="col-md-6 col-xl-4">
+                        <article class="content-card article-card h-100 p-4">
+                            <p class="article-meta mb-2">
+                                <i class="bi bi-person-circle me-1"></i>{{ article.author.username }}
+                                <span class="mx-1">|</span>
+                                <i class="bi bi-calendar3 me-1"></i>{{ article.created_at|date:"M d, Y" }}
+                            </p>
+                            <h3 class="h5 fw-semibold mb-2">{{ article.title }}</h3>
+                            <p class="text-secondary mb-4">{{ article.content|truncatechars:140 }}</p>
+                            <div class="d-flex gap-2">
+                                <a href="{% url 'blogapp:article_detail' article.pk %}" class="btn btn-sm btn-success">Read</a>
+                                <a href="{% url 'blogapp:author_profile' article.author.username %}" class="btn btn-sm btn-outline-dark">Author</a>
+                            </div>
+                        </article>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state p-5 text-center">
+                <h3 class="h4 mb-2">No articles yet</h3>
+                <p class="text-secondary mb-3">Start with your first post to build a strong publishing presence.</p>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'blogapp:create_article' %}" class="btn btn-success">Create first article</a>
+                {% else %}
+                    <a href="{% url 'blogapp:register' %}" class="btn btn-success">Join and publish</a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="pb-5">
+    <div class="container">
+        <div class="surface-card p-4 p-lg-5 text-center">
+            <h2 class="h3 mb-2">Get weekly editorial updates</h2>
+            <p class="text-secondary mb-4">Join the GreenInk newsletter for curated posts and practical writing insights.</p>
+            <a href="{% url 'blogapp:newsletter' %}" class="btn btn-success">Subscribe to newsletter</a>
+        </div>
+    </div>
+</section>
 {% endblock content %}

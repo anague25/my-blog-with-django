@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Contact | GreenInk Blog{% endblock title %}
+{% block content %}
+<section class="page-banner">
+    <div class="container">
+        <div class="page-banner-inner">
+            <h1 class="display-6 fw-bold mb-2">Contact us</h1>
+            <p class="mb-0 text-light-emphasis">Questions, partnerships, media requests, or technical support.</p>
+        </div>
+    </div>
+</section>
+
+<section class="pb-4">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-7">
+                <div class="surface-card p-4 p-lg-5">
+                    <h2 class="h4 mb-3">Send a message</h2>
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">First name</label>
+                                <input type="text" class="form-control" placeholder="Alex">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Last name</label>
+                                <input type="text" class="form-control" placeholder="Carter">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">Email</label>
+                                <input type="email" class="form-control" placeholder="you@example.com">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">Topic</label>
+                                <select class="form-select">
+                                    <option>General inquiry</option>
+                                    <option>Technical support</option>
+                                    <option>Partnership</option>
+                                    <option>Content collaboration</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">Message</label>
+                                <textarea class="form-control" rows="5" placeholder="Tell us how we can help."></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="button" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="content-card p-4 h-100">
+                    <h2 class="h5 mb-3">Support details</h2>
+                    <p class="mb-2"><i class="bi bi-envelope me-2"></i>support@greeninkblog.com</p>
+                    <p class="mb-2"><i class="bi bi-telephone me-2"></i>+1 (555) 014-3288</p>
+                    <p class="mb-4"><i class="bi bi-geo-alt me-2"></i>128 Market Street, San Francisco, CA</p>
+                    <h3 class="h6 text-uppercase text-secondary">Business hours</h3>
+                    <p class="mb-4 text-secondary">Monday to Friday, 9:00 AM to 6:00 PM (PST)</p>
+                    <h3 class="h6 text-uppercase text-secondary">Need quick answers?</h3>
+                    <a href="{% url 'blogapp:faq' %}" class="btn btn-outline-dark btn-sm">Open FAQ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

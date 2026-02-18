@@ -1,11 +1,40 @@
 {% extends "base.html" %}
-{% block title %}Connexion{% endblock title %}
+{% block title %}Sign In | GreenInk Blog{% endblock title %}
 {% block content %}
-<h1>Welcome to the Connexion Page</h1>
+<section class="page-banner">
+    <div class="container">
+        <div class="page-banner-inner">
+            <h1 class="display-6 fw-bold mb-2">Welcome back</h1>
+            <p class="mb-0 text-light-emphasis">Sign in to continue writing and managing your articles.</p>
+        </div>
+    </div>
+</section>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-
-{% endblock content %} 
+<section class="pb-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="surface-card p-4 p-lg-5">
+                    <form method="POST" novalidate>
+                        {% csrf_token %}
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+                        {% endif %}
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                {{ field }}
+                                {% if field.errors %}
+                                    <div class="text-danger small mt-1">{{ field.errors|striptags }}</div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        <button class="btn btn-success w-100" type="submit">Sign In</button>
+                    </form>
+                    <p class="text-secondary text-center mt-3 mb-0">No account yet? <a href="{% url 'blogapp:register' %}">Create one</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

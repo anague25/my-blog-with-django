@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}FAQ | GreenInk Blog{% endblock title %}
+{% block content %}
+<section class="page-banner">
+    <div class="container">
+        <div class="page-banner-inner">
+            <h1 class="display-6 fw-bold mb-2">Frequently asked questions</h1>
+            <p class="mb-0 text-light-emphasis">Quick answers about publishing and account usage.</p>
+        </div>
+    </div>
+</section>
+
+<section class="pb-5">
+    <div class="container">
+        <div class="surface-card p-4 p-lg-5">
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne">How do I publish my first article?</button>
+                    </h2>
+                    <div id="faqOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">Create an account, go to New Article, add title and content, then publish.</div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo">Can I edit an article after publishing?</button>
+                    </h2>
+                    <div id="faqTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">Yes, open the article detail page and click Edit Article.</div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree">How can I contact support?</button>
+                    </h2>
+                    <div id="faqThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">Use the Contact page for support requests and partnership inquiries.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

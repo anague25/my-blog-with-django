@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}{{ author_profile.username }} | Author | GreenInk Blog{% endblock title %}
+{% block content %}
+<section class="page-banner">
+    <div class="container">
+        <div class="page-banner-inner">
+            <p class="mb-2 text-light-emphasis">Author profile</p>
+            <h1 class="display-6 fw-bold mb-2">{{ author_profile.username }}</h1>
+            <p class="mb-0 text-light-emphasis">Published articles by this author.</p>
+        </div>
+    </div>
+</section>
+
+<section class="pb-5">
+    <div class="container">
+        {% if articles %}
+            <div class="row g-4">
+                {% for article in articles %}
+                    <div class="col-md-6">
+                        <article class="content-card p-4 h-100">
+                            <p class="article-meta mb-2">{{ article.created_at|date:"M d, Y" }}</p>
+                            <h2 class="h5 mb-2">{{ article.title }}</h2>
+                            <p class="text-secondary mb-3">{{ article.content|truncatechars:160 }}</p>
+                            <a href="{% url 'blogapp:article_detail' article.pk %}" class="btn btn-sm btn-success">Read article</a>
+                        </article>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state p-5 text-center">
+                <h2 class="h4 mb-2">No articles from this author yet</h2>
+                <p class="text-secondary mb-0">Check back later for new publications.</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock content %}

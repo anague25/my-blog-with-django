@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Authors | GreenInk Blog{% endblock title %}
+{% block content %}
+<section class="page-banner">
+    <div class="container">
+        <div class="page-banner-inner">
+            <h1 class="display-6 fw-bold mb-2">Meet our authors</h1>
+            <p class="mb-0 text-light-emphasis">Follow writers and explore their published work.</p>
+        </div>
+    </div>
+</section>
+
+<section class="pb-5">
+    <div class="container">
+        {% if authors %}
+            <div class="row g-4">
+                {% for author in authors %}
+                    <div class="col-md-6 col-xl-4">
+                        <article class="content-card p-4 h-100">
+                            <h2 class="h5 mb-2">{{ author.username }}</h2>
+                            <p class="text-secondary mb-3">Contributor profile with published posts and editorial focus.</p>
+                            <a href="{% url 'blogapp:author_profile' author.username %}" class="btn btn-sm btn-success">View profile</a>
+                        </article>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state p-5 text-center">
+                <h2 class="h4 mb-2">No authors yet</h2>
+                <p class="text-secondary mb-0">Author profiles will appear once articles are published.</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock content %}
