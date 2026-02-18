@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+<h1>Welcome to the Home Page</h1>
+<h2>Voici les derniers articles de mon blog</h2>
+<p>
+    {%if user.is_authenticated%}
+    Bonjour {{ user.username }} !
+    {% else %}
+    Veuillez vous connecter pour accéder à votre espace personnel.
+    {% endif %}
+</p>
+
+
+{% endblock content %}
